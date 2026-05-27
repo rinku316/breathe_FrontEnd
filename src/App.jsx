@@ -43,7 +43,7 @@ function App() {
   // Approved Record
   const approveRecord = async (id) => {
     await axios.put(
-      `http://localhost:/9090/upload/approve/${id}`
+      `http://localhost:9090/upload/approve/${id}`
     );
 
     fetchRecords();
@@ -53,7 +53,7 @@ function App() {
   // Reject Record
   const rejectRecord = async (id) => {
     await axios.put(
-      `http://localhost:/9090/upload/reject/${id}`
+      `http://localhost:9090/upload/reject/${id}`
     );
 
     fetchRecords();
@@ -114,17 +114,17 @@ function App() {
                     : "yellow"
                 }}
               >
-                
+
                 {record.status}
               
               </td>
 
               <td> 
-                <button onclick = {() => approveRecord(record.id)}>
+                <button onClick = {() => approveRecord(record.id)}>
                   Approve
                 </button>
 
-                <button onclick = {() => rejectRecord(record.id)}>
+                <button onClick = {() => rejectRecord(record.id)}>
                   Reject
                 </button>
               </td>
