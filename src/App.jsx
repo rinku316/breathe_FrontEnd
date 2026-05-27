@@ -39,6 +39,26 @@ function App() {
     fetchRecords();
   };
 
+
+  // Approved Record
+  const approveRecord = async (id) => {
+    await axios.put(
+      `http://localhost:/9090/upload/approve/${id}`
+    );
+
+    fetchRecords();
+
+  };
+
+  // Reject Record
+  const rejectRecord = async (id) => {
+    await axios.put(
+      `http://localhost:/9090/upload/reject/${id}`
+    );
+
+    fetchRecords();
+  };
+
   return (
     <div style={{ padding: "20px" }}>
 
@@ -65,6 +85,7 @@ function App() {
             <th>Amount</th>
             <th>Unit</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -84,7 +105,32 @@ function App() {
 
               <td>{record.unit}</td>
 
-              <td>{record.status}</td>
+              <td
+                style ={{
+                  color:
+                    record.status === "APPROVED" ? "green"
+                    : record.status === "REJECTED" ? "red"
+                    : record.status === "SUSPICIOUS" ? "orange"
+                    : "yellow"
+                }}
+              >
+                
+                {record.status}
+              
+              </td>
+
+              <td> 
+                <button onclick = {() => approveRecord(record.id)}>
+                  Approve
+                </button>
+
+                <button onclick = {() => rejectRecord(record.id)}>
+                  Reject
+                </button>
+              </td>
+
+              
+
 
             </tr>
 
