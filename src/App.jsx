@@ -6,10 +6,12 @@ function App() {
   const [file, setFile] = useState(null);
   const [records, setRecords] = useState([]);
 
+  const API_URL = "https://breathe-esg-assignment-4zgi.onrender.com";
+
   const fetchRecords = async () => {
 
     const response = await axios.get(
-      "http://localhost:9090/upload/records"
+      `${API_URL}/upload/records`
     );
 
     setRecords(response.data);
@@ -30,7 +32,7 @@ function App() {
     formData.append("file", file);
 
     await axios.post(
-      "http://localhost:9090/upload/sap",
+      `${API_URL}/upload/sap`,
       formData
     );
 
@@ -43,7 +45,7 @@ function App() {
   // Approved Record
   const approveRecord = async (id) => {
     await axios.put(
-      `http://localhost:9090/upload/approve/${id}`
+      `${API_URL}/upload/approve/${id}`
     );
 
     fetchRecords();
@@ -53,7 +55,7 @@ function App() {
   // Reject Record
   const rejectRecord = async (id) => {
     await axios.put(
-      `http://localhost:9090/upload/reject/${id}`
+      `${API_URL}/upload/reject/${id}`
     );
 
     fetchRecords();
@@ -128,9 +130,6 @@ function App() {
                   Reject
                 </button>
               </td>
-
-              
-
 
             </tr>
 
